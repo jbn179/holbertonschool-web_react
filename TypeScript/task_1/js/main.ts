@@ -1,4 +1,4 @@
-// Interface Teacher avec propriétés en lecture seule et propriétés dynamiques
+// Teacher interface with readonly properties and dynamic properties
 interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
@@ -8,7 +8,7 @@ interface Teacher {
   [key: string]: any;
 }
 
-// Exemple exact de l'énoncé
+// Example from the task requirements
 const teacher3: Teacher = {
   firstName: 'John',
   fullTimeEmployee: false,
@@ -17,4 +17,20 @@ const teacher3: Teacher = {
   contract: false,
 };
 
-console.log(teacher3); 
+console.log(teacher3);
+
+// Directors interface that extends Teacher (Task 2)
+interface Directors extends Teacher {
+  numberOfReports: number;
+}
+
+// Example for Directors interface
+const director1: Directors = {
+  firstName: 'John',
+  lastName: 'Doe',
+  location: 'London',
+  fullTimeEmployee: true,
+  numberOfReports: 17,
+};
+
+console.log(director1); 
