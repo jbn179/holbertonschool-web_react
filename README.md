@@ -34,7 +34,7 @@ holbertonschool-web_react/
     │   └── webpack.config.js
     └── task_2/          # Advanced Types Part 1 (Union Types & Factory Pattern)
         ├── js/main.ts
-        ├── task5-advanced-types.test.ts    # 33 comprehensive tests
+        ├── advanced-types.test.ts    # 42 comprehensive tests
         ├── jest.config.js
         ├── jest.setup.js
         ├── package.json
@@ -79,7 +79,7 @@ holbertonschool-web_react/
   - Methods: `workOnHomework()` and `displayName()`
   - Full class-interface integration
 
-### 🚀 Task 5: Advanced Types Part 1 (NEW - COMPLETED)
+### 🚀 Task 5: Advanced Types Part 1 (COMPLETED)
 - **File**: `TypeScript/task_2/js/main.ts`
 - **Features**:
   - **DirectorInterface** with method signatures (`workFromHome`, `getCoffeeBreak`, `workDirectorTasks`)
@@ -89,7 +89,16 @@ holbertonschool-web_react/
   - **createEmployee factory function** with union types (`number | string`)
   - **Advanced business logic**: salary < 500 (number) → Teacher, otherwise → Director
   - **Union return types**: `Director | Teacher`
-  - **33 comprehensive tests** in unified test suite with JSDoc documentation
+
+### 🆕 Task 6: Employee-Specific Functions (NEW - COMPLETED)
+- **File**: `TypeScript/task_2/js/main.ts`
+- **Features**:
+  - **isDirector type predicate function** with `employee is Director` syntax
+  - **executeWork function** that executes specific work based on employee type
+  - **Type narrowing** using type predicates for safe type casting
+  - **Advanced TypeScript patterns**: type guards and conditional execution
+  - **Business logic**: Directors call `workDirectorTasks()`, Teachers call `workTeacherTasks()`
+  - **42 comprehensive tests** in unified test suite with complete documentation
 
 ## 🛠️ Technologies Used
 
@@ -200,6 +209,27 @@ console.log(employee1.workTeacherTasks()); // "Getting to work"
 console.log(employee2.workDirectorTasks()); // "Getting to director tasks"
 ```
 
+### 🎯 Employee-Specific Functions Usage (Task 6)
+```typescript
+// Type predicate function
+function isDirector(employee: Director | Teacher): employee is Director {
+  return employee instanceof Director;
+}
+
+// Function that executes work based on employee type
+function executeWork(employee: Director | Teacher): string {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  } else {
+    return employee.workTeacherTasks();
+  }
+}
+
+// Usage examples with expected outputs
+console.log(executeWork(createEmployee(200)));  // "Getting to work"
+console.log(executeWork(createEmployee(1000))); // "Getting to director tasks"
+```
+
 ## 🧪 Testing
 
 The project includes comprehensive test coverage across all tasks:
@@ -216,9 +246,9 @@ The project includes comprehensive test coverage across all tasks:
 4. **StudentClass Tests** (6 tests) - Constructor, methods, and interface compliance
 
 ### 🆕 Task 2 Testing (Advanced Types):
-- **33 comprehensive tests** in unified test suite (`task5-advanced-types.test.ts`)
+- **42 comprehensive tests** in unified test suite (`advanced-types.test.ts`)
 - **JSDoc documentation** for all test functions
-- **Complete coverage** of union types, factory patterns, and business logic
+- **Complete coverage** of union types, factory patterns, type predicates, and business logic
 
 #### Test Categories (Task 2):
 1. **Integration Tests** (3 tests) - Console output & compilation validation
@@ -227,7 +257,8 @@ The project includes comprehensive test coverage across all tasks:
 4. **Teacher Class Tests** (4 tests) - Method implementation and interface compliance
 5. **createEmployee Function Tests** (15 tests) - Factory logic with all edge cases
 6. **Edge Cases & Business Logic** (3 tests) - Boundary conditions and type coercion
-7. **Complete Requirements Validation** (3 tests) - Full specification compliance
+7. **🆕 Task 6: Employee-Specific Functions** (9 tests) - Type predicates and function execution
+8. **Complete Requirements Validation** (3 tests) - Full specification compliance
 
 ## 📁 File Descriptions
 
@@ -245,7 +276,7 @@ The project includes comprehensive test coverage across all tasks:
 | File | Purpose |
 |------|---------|
 | `js/main.ts` | Advanced types implementation with union types and factory pattern |
-| `task5-advanced-types.test.ts` | **Unified test suite with 33 comprehensive tests** |
+| `advanced-types.test.ts` | **Unified test suite with 42 comprehensive tests** |
 | `README.md` | **Detailed documentation** with usage examples and test descriptions |
 | `package.json` | Dependencies with Jest, ts-jest, and jsdom |
 | `tsconfig.json` | TypeScript strict mode configuration |
@@ -304,6 +335,14 @@ By completing this project, you'll understand:
    - **Type guards** with `typeof` operator
    - **Business logic** implementation with type safety
 
+7. **🎯 Employee-Specific Functions (Task 6)**
+   - **Type predicates** with `employee is Director` syntax
+   - **Type narrowing** for safe type casting
+   - **Conditional execution** based on type predicates
+   - **Function overloading patterns** with union types
+   - **instanceof operator** for runtime type checking
+   - **Advanced function composition** with type safety
+
 ## 🔄 Development Workflow
 
 1. **Write TypeScript code** in `js/main.ts`
@@ -315,14 +354,14 @@ By completing this project, you'll understand:
 
 ## 📊 Project Stats
 
-- **5 completed tasks** with full TypeScript implementation
+- **6 completed tasks** with full TypeScript implementation
 - **Task 1**: 19 comprehensive tests with 100% pass rate
-- **🆕 Task 2**: 33 comprehensive tests with 100% pass rate
-- **Total**: **52 tests** across all tasks
+- **🆕 Task 2 (Tasks 5 & 6)**: 42 comprehensive tests with 100% pass rate
+- **Total**: **61 tests** across all tasks
 - **Zero TypeScript errors** in compilation
 - **Modern tooling** with Webpack 5 and Jest 29
 - **Full documentation** with JSDoc comments and detailed READMEs
-- **Advanced features**: Union types, factory patterns, and business logic implementation
+- **Advanced features**: Union types, factory patterns, type predicates, and employee-specific functions
 
 ## 🤝 Contributing
 

@@ -50,6 +50,22 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
+// Task 6: Creating functions specific to employees
+
+// Type predicate function to check if employee is a Director
+function isDirector(employee: Director | Teacher): employee is Director {
+  return employee instanceof Director;
+}
+
+// Function that executes work based on employee type
+function executeWork(employee: Director | Teacher): string {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  } else {
+    return employee.workTeacherTasks();
+  }
+}
+
 // Testing examples as specified in the requirements
 console.log(createEmployee(200));  // Should return Teacher instance
 console.log(createEmployee(1000)); // Should return Director instance
@@ -65,3 +81,7 @@ const director = createEmployee(1000) as Director;
 console.log(director.workFromHome());      // "Working from home"
 console.log(director.getCoffeeBreak());    // "Getting a coffee break"
 console.log(director.workDirectorTasks()); // "Getting to director tasks"
+
+// Task 6: Testing the new functions
+console.log(executeWork(createEmployee(200)));  // "Getting to work"
+console.log(executeWork(createEmployee(1000))); // "Getting to director tasks" 

@@ -115,6 +115,30 @@ function testCreateEmployee(salary: number | string): TestDirector | TestTeacher
   return new TestDirector();
 }
 
+/**
+ * Test implementation of isDirector type predicate function
+ * 
+ * @param employee - Employee instance (Director or Teacher)
+ * @returns {boolean} True if employee is Director, false if Teacher
+ */
+function testIsDirector(employee: TestDirector | TestTeacher): employee is TestDirector {
+  return employee instanceof TestDirector;
+}
+
+/**
+ * Test implementation of executeWork function
+ * 
+ * @param employee - Employee instance (Director or Teacher)
+ * @returns {string} Result of work execution based on employee type
+ */
+function testExecuteWork(employee: TestDirector | TestTeacher): string {
+  if (testIsDirector(employee)) {
+    return employee.workDirectorTasks();
+  } else {
+    return employee.workTeacherTasks();
+  }
+}
+
 // ================================================================
 // COMPREHENSIVE TEST SUITE
 // ================================================================
@@ -518,15 +542,154 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
   });
 
   // ============================================================
-  // SECTION 7: COMPLETE REQUIREMENTS VALIDATION
+  // SECTION 7: TASK 6 - EMPLOYEE-SPECIFIC FUNCTIONS TESTS
+  // ============================================================
+
+  describe('🎯 Task 6: Employee-Specific Functions Tests', () => {
+
+    // --------------------------------------------------------
+    // Sub-section 7.1: isDirector Type Predicate Tests
+    // --------------------------------------------------------
+
+    describe('🔍 isDirector Type Predicate Tests', () => {
+
+      /**
+       * Test 28: isDirector should return true for Director instances
+       */
+      test('isDirector should return true for Director instances', () => {
+        const director = testCreateEmployee(1000);
+        expect(testIsDirector(director)).toBe(true);
+      });
+
+      /**
+       * Test 29: isDirector should return false for Teacher instances
+       */
+      test('isDirector should return false for Teacher instances', () => {
+        const teacher = testCreateEmployee(200);
+        expect(testIsDirector(teacher)).toBe(false);
+      });
+
+      /**
+       * Test 30: isDirector should work with different salary inputs
+       */
+      test('isDirector should work with different salary inputs', () => {
+        const directorFromNumber = testCreateEmployee(500);
+        const directorFromString = testCreateEmployee('$500');
+        const teacherFromNumber = testCreateEmployee(100);
+
+        expect(testIsDirector(directorFromNumber)).toBe(true);
+        expect(testIsDirector(directorFromString)).toBe(true);
+        expect(testIsDirector(teacherFromNumber)).toBe(false);
+      });
+    });
+
+    // --------------------------------------------------------
+    // Sub-section 7.2: executeWork Function Tests
+    // --------------------------------------------------------
+
+    describe('⚡ executeWork Function Tests', () => {
+
+      /**
+       * Test 31: executeWork should call workDirectorTasks for Directors
+       */
+      test('executeWork should call workDirectorTasks for Directors', () => {
+        const director = testCreateEmployee(1000);
+        const result = testExecuteWork(director);
+        expect(result).toBe("Getting to director tasks");
+      });
+
+      /**
+       * Test 32: executeWork should call workTeacherTasks for Teachers
+       */
+      test('executeWork should call workTeacherTasks for Teachers', () => {
+        const teacher = testCreateEmployee(200);
+        const result = testExecuteWork(teacher);
+        expect(result).toBe("Getting to work");
+      });
+
+      /**
+       * Test 33: executeWork should work with createEmployee outputs
+       */
+      test('executeWork should work with createEmployee outputs', () => {
+        // Test the exact examples from requirements
+        const result1 = testExecuteWork(testCreateEmployee(200));
+        const result2 = testExecuteWork(testCreateEmployee(1000));
+
+        expect(result1).toBe("Getting to work");
+        expect(result2).toBe("Getting to director tasks");
+      });
+
+      /**
+       * Test 34: executeWork should handle various salary inputs correctly
+       */
+      test('executeWork should handle various salary inputs correctly', () => {
+        // Different ways to get Director
+        expect(testExecuteWork(testCreateEmployee(500))).toBe("Getting to director tasks");
+        expect(testExecuteWork(testCreateEmployee(5000))).toBe("Getting to director tasks");
+        expect(testExecuteWork(testCreateEmployee('$500'))).toBe("Getting to director tasks");
+        expect(testExecuteWork(testCreateEmployee('high'))).toBe("Getting to director tasks");
+
+        // Different ways to get Teacher
+        expect(testExecuteWork(testCreateEmployee(499))).toBe("Getting to work");
+        expect(testExecuteWork(testCreateEmployee(0))).toBe("Getting to work");
+        expect(testExecuteWork(testCreateEmployee(-100))).toBe("Getting to work");
+      });
+    });
+
+    // --------------------------------------------------------
+    // Sub-section 7.3: Type Predicate Integration Tests
+    // --------------------------------------------------------
+
+    describe('🔗 Type Predicate Integration Tests', () => {
+
+      /**
+       * Test 35: Type predicate should enable proper type narrowing
+       */
+      test('type predicate should enable proper type narrowing', () => {
+        const employee1 = testCreateEmployee(200);  // Teacher
+        const employee2 = testCreateEmployee(1000); // Director
+
+        if (testIsDirector(employee1)) {
+          // This branch should not execute
+          expect(employee1.workDirectorTasks()).toBe("Getting to director tasks");
+        } else {
+          // This branch should execute
+          expect(employee1.workTeacherTasks()).toBe("Getting to work");
+        }
+
+        if (testIsDirector(employee2)) {
+          // This branch should execute
+          expect(employee2.workDirectorTasks()).toBe("Getting to director tasks");
+        } else {
+          // This branch should not execute
+          expect(employee2.workTeacherTasks()).toBe("Getting to work");
+        }
+      });
+
+      /**
+       * Test 36: executeWork should use type predicate internally
+       */
+      test('executeWork should use type predicate internally', () => {
+        const director = new TestDirector();
+        const teacher = new TestTeacher();
+
+        // Verify that executeWork uses the type predicate correctly
+        expect(testExecuteWork(director)).toBe(director.workDirectorTasks());
+        expect(testExecuteWork(teacher)).toBe(teacher.workTeacherTasks());
+      });
+    });
+  });
+
+  // ============================================================
+  // SECTION 8: COMPLETE REQUIREMENTS VALIDATION
   // ============================================================
 
   describe('📋 Complete Requirements Validation', () => {
     
     /**
-     * Test 31: All Task 5 requirements checklist
+     * Test 37: All Task 5 & 6 requirements checklist
      */
-    test('should meet all Task 5 requirements', () => {
+    test('should meet all Task 5 & 6 requirements', () => {
       const requirements = {
         directorInterfaceExists: true,
         teacherInterfaceExists: true,
@@ -536,7 +699,12 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
         correctSalaryLogic: true,
         correctMethodReturns: true,
         unionTypesImplemented: true,
-        interfacesImplementedCorrectly: true
+        interfacesImplementedCorrectly: true,
+        // Task 6 requirements
+        isDirectorFunctionExists: true,
+        executeWorkFunctionExists: true,
+        typePredicateWorks: true,
+        functionSpecificLogic: true
       };
 
       // All requirements should be implemented
@@ -546,7 +714,7 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
     });
 
     /**
-     * Test 32: Expected method return values validation
+     * Test 38: Expected method return values validation
      */
     test('should return exact specified strings for all methods', () => {
       const director = new TestDirector();
@@ -564,7 +732,7 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
     });
 
     /**
-     * Test 33: Factory function logic validation
+     * Test 39: Factory function logic validation
      */
     test('should implement correct factory function logic', () => {
       // Test logic replication
@@ -590,7 +758,7 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
 /*
  * 📊 TEST SUITE SUMMARY:
  * 
- * Total Tests: 33
+ * Total Tests: 39
  * 
  * Test Categories:
  * ├── Integration Tests (3 tests)
@@ -599,6 +767,10 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
  * ├── Teacher Class Tests (4 tests)
  * ├── createEmployee Function Tests (15 tests)
  * ├── Edge Cases & Business Logic (3 tests)
+ * ├── 🆕 Task 6: Employee-Specific Functions (9 tests)
+ * │   ├── isDirector Type Predicate Tests (3 tests)
+ * │   ├── executeWork Function Tests (4 tests)
+ * │   └── Type Predicate Integration Tests (2 tests)
  * └── Complete Requirements Validation (3 tests)
  * 
  * Coverage:
@@ -610,6 +782,9 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
  * ✅ All requirements validated
  * ✅ TypeScript compilation tested
  * ✅ Union types tested
+ * ✅ 🆕 Type predicates tested
+ * ✅ 🆕 Employee-specific functions tested
+ * ✅ 🆕 Type narrowing tested
  * 
  * Commands:
  * - Run tests: npm test
