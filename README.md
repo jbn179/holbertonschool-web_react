@@ -25,13 +25,22 @@ holbertonschool-web_react/
     │   ├── tsconfig.json
     │   ├── webpack.config.js
     │   └── *.test.ts
-    └── task_1/          # Advanced TypeScript features (Main project)
+    ├── task_1/          # Advanced TypeScript features (Interfaces & Classes)
+    │   ├── js/main.ts
+    │   ├── teacher.test.ts
+    │   ├── jest.config.js
+    │   ├── package.json
+    │   ├── tsconfig.json
+    │   └── webpack.config.js
+    └── task_2/          # Advanced Types Part 1 (Union Types & Factory Pattern)
         ├── js/main.ts
-        ├── teacher.test.ts
+        ├── task5-advanced-types.test.ts    # 33 comprehensive tests
         ├── jest.config.js
+        ├── jest.setup.js
         ├── package.json
         ├── tsconfig.json
-        └── webpack.config.js
+        ├── webpack.config.js
+        └── README.md
 ```
 
 ## 🎯 Tasks Completed
@@ -70,6 +79,18 @@ holbertonschool-web_react/
   - Methods: `workOnHomework()` and `displayName()`
   - Full class-interface integration
 
+### 🚀 Task 5: Advanced Types Part 1 (NEW - COMPLETED)
+- **File**: `TypeScript/task_2/js/main.ts`
+- **Features**:
+  - **DirectorInterface** with method signatures (`workFromHome`, `getCoffeeBreak`, `workDirectorTasks`)
+  - **TeacherInterface** with method signatures (`workFromHome`, `getCoffeeBreak`, `workTeacherTasks`)
+  - **Director class** implementing DirectorInterface with specific return values
+  - **Teacher class** implementing TeacherInterface with specific return values
+  - **createEmployee factory function** with union types (`number | string`)
+  - **Advanced business logic**: salary < 500 (number) → Teacher, otherwise → Director
+  - **Union return types**: `Director | Teacher`
+  - **33 comprehensive tests** in unified test suite with JSDoc documentation
+
 ## 🛠️ Technologies Used
 
 - **TypeScript 4.9.5** - Main programming language
@@ -94,9 +115,13 @@ holbertonschool-web_react/
    cd holbertonschool-web_react
    ```
 
-2. **Navigate to the main TypeScript project:**
+2. **Navigate to a TypeScript project:**
    ```bash
+   # For Task 1 (Interfaces & Classes)
    cd TypeScript/task_1
+   
+   # For Task 2 (Advanced Types with Union Types & Factory Pattern)
+   cd TypeScript/task_2
    ```
 
 3. **Install dependencies:**
@@ -161,31 +186,72 @@ console.log(student.displayName());     // Output: "Alice"
 console.log(student.workOnHomework());  // Output: "Currently working"
 ```
 
+### 🆕 Advanced Types Usage (Task 5)
+```typescript
+// Factory function with union types
+const employee1 = createEmployee(200);   // Returns Teacher
+const employee2 = createEmployee(1000);  // Returns Director  
+const employee3 = createEmployee('$500'); // Returns Director
+
+// Method calls with specific implementations
+console.log(employee1.workFromHome());     // "Cannot work from home"
+console.log(employee2.workFromHome());     // "Working from home"
+console.log(employee1.workTeacherTasks()); // "Getting to work"
+console.log(employee2.workDirectorTasks()); // "Getting to director tasks"
+```
+
 ## 🧪 Testing
 
-The project includes comprehensive test coverage:
+The project includes comprehensive test coverage across all tasks:
 
-- **19 total tests** across all features
+### Task 1 Testing:
+- **19 total tests** for interfaces, functions, and classes
 - **Jest configuration** with TypeScript support
-- **Unit tests** for interfaces, functions, and classes
 - **Type validation** and edge case testing
 
-### Test Categories:
+#### Test Categories (Task 1):
 1. **Teacher Interface Tests** (5 tests) - Property validation and types
 2. **Directors Interface Tests** (3 tests) - Inheritance and extension
 3. **printTeacher Function Tests** (5 tests) - String formatting and edge cases
 4. **StudentClass Tests** (6 tests) - Constructor, methods, and interface compliance
 
+### 🆕 Task 2 Testing (Advanced Types):
+- **33 comprehensive tests** in unified test suite (`task5-advanced-types.test.ts`)
+- **JSDoc documentation** for all test functions
+- **Complete coverage** of union types, factory patterns, and business logic
+
+#### Test Categories (Task 2):
+1. **Integration Tests** (3 tests) - Console output & compilation validation
+2. **Interface Validation** (2 tests) - DirectorInterface & TeacherInterface structure
+3. **Director Class Tests** (4 tests) - Method implementation and interface compliance
+4. **Teacher Class Tests** (4 tests) - Method implementation and interface compliance
+5. **createEmployee Function Tests** (15 tests) - Factory logic with all edge cases
+6. **Edge Cases & Business Logic** (3 tests) - Boundary conditions and type coercion
+7. **Complete Requirements Validation** (3 tests) - Full specification compliance
+
 ## 📁 File Descriptions
 
+### Task 1 Files (TypeScript/task_1/):
 | File | Purpose |
 |------|---------|
-| `js/main.ts` | Main TypeScript implementation with all interfaces and classes |
+| `js/main.ts` | Main TypeScript implementation with interfaces and classes |
 | `teacher.test.ts` | Comprehensive test suite with full documentation |
 | `package.json` | Dependencies and scripts configuration |
 | `tsconfig.json` | TypeScript compiler configuration |
 | `webpack.config.js` | Webpack bundler configuration |
 | `jest.config.js` | Jest testing framework configuration |
+
+### 🆕 Task 2 Files (TypeScript/task_2/):
+| File | Purpose |
+|------|---------|
+| `js/main.ts` | Advanced types implementation with union types and factory pattern |
+| `task5-advanced-types.test.ts` | **Unified test suite with 33 comprehensive tests** |
+| `README.md` | **Detailed documentation** with usage examples and test descriptions |
+| `package.json` | Dependencies with Jest, ts-jest, and jsdom |
+| `tsconfig.json` | TypeScript strict mode configuration |
+| `webpack.config.js` | Development server and bundling configuration |
+| `jest.config.js` | Jest configuration with ts-jest preset |
+| `jest.setup.js` | Jest setup for DOM testing environment |
 
 ## 🔧 Configuration
 
@@ -230,6 +296,14 @@ By completing this project, you'll understand:
    - Development server setup
    - Code quality tools
 
+6. **🆕 Advanced TypeScript Features (Task 5)**
+   - **Union types** for function parameters (`number | string`)
+   - **Union return types** (`Director | Teacher`)
+   - **Factory pattern** with conditional logic
+   - **Interface implementation** in classes
+   - **Type guards** with `typeof` operator
+   - **Business logic** implementation with type safety
+
 ## 🔄 Development Workflow
 
 1. **Write TypeScript code** in `js/main.ts`
@@ -241,11 +315,14 @@ By completing this project, you'll understand:
 
 ## 📊 Project Stats
 
-- **4 completed tasks** with full TypeScript implementation
-- **19 comprehensive tests** with 100% pass rate
+- **5 completed tasks** with full TypeScript implementation
+- **Task 1**: 19 comprehensive tests with 100% pass rate
+- **🆕 Task 2**: 33 comprehensive tests with 100% pass rate
+- **Total**: **52 tests** across all tasks
 - **Zero TypeScript errors** in compilation
 - **Modern tooling** with Webpack 5 and Jest 29
-- **Full documentation** with JSDoc comments
+- **Full documentation** with JSDoc comments and detailed READMEs
+- **Advanced features**: Union types, factory patterns, and business logic implementation
 
 ## 🤝 Contributing
 
