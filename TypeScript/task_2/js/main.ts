@@ -84,4 +84,22 @@ console.log(director.workDirectorTasks()); // "Getting to director tasks"
 
 // Task 6: Testing the new functions
 console.log(executeWork(createEmployee(200)));  // "Getting to work"
-console.log(executeWork(createEmployee(1000))); // "Getting to director tasks" 
+console.log(executeWork(createEmployee(1000))); // "Getting to director tasks"
+
+// Task 7: String literal types
+
+// String literal type allowing only 'Math' or 'History'
+type Subjects = 'Math' | 'History';
+
+// Function that takes a Subjects type and returns appropriate teaching message
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  } else {
+    return 'Teaching History';
+  }
+}
+
+// Testing examples as specified in the requirements
+console.log(teachClass('Math'));     // "Teaching Math"
+console.log(teachClass('History'));  // "Teaching History"

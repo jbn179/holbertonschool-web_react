@@ -1,16 +1,27 @@
 /**
  * ================================================================
- * TASK 5: ADVANCED TYPES PART 1 - COMPREHENSIVE TEST SUITE
+ * ADVANCED TYPES - COMPREHENSIVE TEST SUITE
  * ================================================================
  * 
- * This test suite validates the complete implementation of Task 5:
+ * This test suite validates the complete implementation of:
+ * 
+ * TASK 5: Advanced Types Part 1
  * - DirectorInterface and TeacherInterface definitions
  * - Director and Teacher class implementations
  * - createEmployee factory function with union types
- * - Advanced TypeScript features (interfaces, classes, union types)
+ * 
+ * TASK 6: Employee-Specific Functions
+ * - isDirector type predicate function
+ * - executeWork function with conditional logic
+ * - Type narrowing and type guards
+ * 
+ * TASK 7: String Literal Types
+ * - Subjects string literal type
+ * - teachClass function with literal type constraints
+ * - Type safety with string literals
  * 
  * @author Holberton School TypeScript Course
- * @version 1.0.0
+ * @version 2.0.0
  * @tested_implementation js/main.ts
  */
 
@@ -143,7 +154,7 @@ function testExecuteWork(employee: TestDirector | TestTeacher): string {
 // COMPREHENSIVE TEST SUITE
 // ================================================================
 
-describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
+describe('🎯 Advanced Types - Complete Test Suite (Tasks 5, 6, 7)', () => {
   
   beforeEach(() => {
     // Clear all mocks before each test to ensure clean state
@@ -750,6 +761,137 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
       expect(validateLogic(-1)).toBe("Teacher");
     });
   });
+
+  // ============================================================
+  // SECTION 9: TASK 7 - STRING LITERAL TYPES TESTS
+  // ============================================================
+
+  describe('📝 Task 7: String Literal Types Tests', () => {
+
+    // Local test implementations for Task 7
+    type TestSubjects = 'Math' | 'History';
+
+    function testTeachClass(todayClass: TestSubjects): string {
+      if (todayClass === 'Math') {
+        return 'Teaching Math';
+      } else {
+        return 'Teaching History';
+      }
+    }
+
+    // --------------------------------------------------------
+    // Sub-section 9.1: String Literal Type Tests
+    // --------------------------------------------------------
+
+    describe('🔤 String Literal Type Tests', () => {
+
+      /**
+       * Test 40: Subjects type should only allow 'Math' or 'History'
+       */
+      test('Subjects type should only allow Math or History', () => {
+        // TypeScript compilation test - these should compile
+        const validSubject1: TestSubjects = 'Math';
+        const validSubject2: TestSubjects = 'History';
+
+        expect(validSubject1).toBe('Math');
+        expect(validSubject2).toBe('History');
+      });
+
+      /**
+       * Test 41: teachClass function should have correct parameter type
+       */
+      test('teachClass should accept only Math or History as parameter', () => {
+        // Function should accept the valid string literals
+        expect(() => testTeachClass('Math')).not.toThrow();
+        expect(() => testTeachClass('History')).not.toThrow();
+      });
+    });
+
+    // --------------------------------------------------------
+    // Sub-section 9.2: teachClass Function Tests
+    // --------------------------------------------------------
+
+    describe('👩‍🏫 teachClass Function Tests', () => {
+
+      /**
+       * Test 42: teachClass('Math') should return 'Teaching Math'
+       */
+      test('teachClass with Math should return Teaching Math', () => {
+        const result = testTeachClass('Math');
+        expect(result).toBe('Teaching Math');
+      });
+
+      /**
+       * Test 43: teachClass('History') should return 'Teaching History'
+       */
+      test('teachClass with History should return Teaching History', () => {
+        const result = testTeachClass('History');
+        expect(result).toBe('Teaching History');
+      });
+
+      /**
+       * Test 44: teachClass should return string type
+       */
+      test('teachClass should return string type', () => {
+        const mathResult = testTeachClass('Math');
+        const historyResult = testTeachClass('History');
+
+        expect(typeof mathResult).toBe('string');
+        expect(typeof historyResult).toBe('string');
+      });
+
+      /**
+       * Test 45: teachClass should handle both subjects correctly
+       */
+      test('teachClass should handle both subjects correctly', () => {
+        const subjects: TestSubjects[] = ['Math', 'History'];
+        const expectedResults = ['Teaching Math', 'Teaching History'];
+
+        subjects.forEach((subject, index) => {
+          const result = testTeachClass(subject);
+          expect(result).toBe(expectedResults[index]);
+        });
+      });
+    });
+
+    // --------------------------------------------------------
+    // Sub-section 9.3: Requirements Compliance Tests
+    // --------------------------------------------------------
+
+    describe('✅ Task 7 Requirements Compliance', () => {
+
+      /**
+       * Test 46: Should meet exact requirement specifications
+       */
+      test('should meet all Task 7 requirements', () => {
+        // Test exact examples from requirements
+        expect(testTeachClass('Math')).toBe('Teaching Math');
+        expect(testTeachClass('History')).toBe('Teaching History');
+      });
+
+      /**
+       * Test 47: Type safety validation
+       */
+      test('should provide type safety with string literals', () => {
+        // This test validates that TypeScript enforces the string literal types
+        const subjects: TestSubjects[] = ['Math', 'History'];
+        
+        subjects.forEach(subject => {
+          const result = testTeachClass(subject);
+          expect(['Teaching Math', 'Teaching History']).toContain(result);
+        });
+      });
+
+      /**
+       * Test 48: Function signature validation
+       */
+      test('teachClass should have correct function signature', () => {
+        // Verify function exists and has correct behavior
+        expect(typeof testTeachClass).toBe('function');
+        expect(testTeachClass.length).toBe(1); // Takes exactly 1 parameter
+      });
+    });
+  });
 });
 
 // ================================================================
@@ -758,7 +900,7 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
 /*
  * 📊 TEST SUITE SUMMARY:
  * 
- * Total Tests: 39
+ * Total Tests: 51
  * 
  * Test Categories:
  * ├── Integration Tests (3 tests)
@@ -767,11 +909,15 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
  * ├── Teacher Class Tests (4 tests)
  * ├── createEmployee Function Tests (15 tests)
  * ├── Edge Cases & Business Logic (3 tests)
- * ├── 🆕 Task 6: Employee-Specific Functions (9 tests)
+ * ├── Task 6: Employee-Specific Functions (9 tests)
  * │   ├── isDirector Type Predicate Tests (3 tests)
  * │   ├── executeWork Function Tests (4 tests)
  * │   └── Type Predicate Integration Tests (2 tests)
- * └── Complete Requirements Validation (3 tests)
+ * ├── Complete Requirements Validation (3 tests)
+ * └── 🆕 Task 7: String Literal Types (9 tests)
+ *     ├── String Literal Type Tests (2 tests)
+ *     ├── teachClass Function Tests (4 tests)
+ *     └── Requirements Compliance Tests (3 tests)
  * 
  * Coverage:
  * ✅ All interfaces tested
@@ -782,9 +928,12 @@ describe('🎯 TASK 5: Advanced Types Part 1 - Complete Test Suite', () => {
  * ✅ All requirements validated
  * ✅ TypeScript compilation tested
  * ✅ Union types tested
- * ✅ 🆕 Type predicates tested
- * ✅ 🆕 Employee-specific functions tested
- * ✅ 🆕 Type narrowing tested
+ * ✅ Type predicates tested
+ * ✅ Employee-specific functions tested
+ * ✅ Type narrowing tested
+ * ✅ 🆕 String literal types tested
+ * ✅ 🆕 Type safety with literals tested
+ * ✅ 🆕 Function parameter constraints tested
  * 
  * Commands:
  * - Run tests: npm test

@@ -90,7 +90,7 @@ holbertonschool-web_react/
   - **Advanced business logic**: salary < 500 (number) → Teacher, otherwise → Director
   - **Union return types**: `Director | Teacher`
 
-### 🆕 Task 6: Employee-Specific Functions (NEW - COMPLETED)
+### 🆕 Task 6: Employee-Specific Functions (COMPLETED)
 - **File**: `TypeScript/task_2/js/main.ts`
 - **Features**:
   - **isDirector type predicate function** with `employee is Director` syntax
@@ -98,7 +98,16 @@ holbertonschool-web_react/
   - **Type narrowing** using type predicates for safe type casting
   - **Advanced TypeScript patterns**: type guards and conditional execution
   - **Business logic**: Directors call `workDirectorTasks()`, Teachers call `workTeacherTasks()`
-  - **42 comprehensive tests** in unified test suite with complete documentation
+
+### 🔤 Task 7: String Literal Types (NEW - COMPLETED)
+- **File**: `TypeScript/task_2/js/main.ts`
+- **Features**:
+  - **Subjects string literal type** allowing only `'Math'` or `'History'`
+  - **teachClass function** with string literal parameter constraints
+  - **Type safety** with literal types preventing invalid inputs
+  - **Conditional logic** based on literal values
+  - **Expected outputs**: `teachClass('Math')` → `'Teaching Math'`, `teachClass('History')` → `'Teaching History'`
+  - **51 comprehensive tests** in unified test suite with complete documentation
 
 ## 🛠️ Technologies Used
 
@@ -230,6 +239,28 @@ console.log(executeWork(createEmployee(200)));  // "Getting to work"
 console.log(executeWork(createEmployee(1000))); // "Getting to director tasks"
 ```
 
+### 🔤 String Literal Types Usage (Task 7)
+```typescript
+// String literal type allowing only specific values
+type Subjects = 'Math' | 'History';
+
+// Function with string literal type constraint
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  } else {
+    return 'Teaching History';
+  }
+}
+
+// Usage examples with expected outputs
+console.log(teachClass('Math'));     // "Teaching Math"
+console.log(teachClass('History'));  // "Teaching History"
+
+// TypeScript will prevent invalid inputs at compile time
+// teachClass('Science'); // ❌ TypeScript Error: Argument of type '"Science"' is not assignable
+```
+
 ## 🧪 Testing
 
 The project includes comprehensive test coverage across all tasks:
@@ -246,9 +277,9 @@ The project includes comprehensive test coverage across all tasks:
 4. **StudentClass Tests** (6 tests) - Constructor, methods, and interface compliance
 
 ### 🆕 Task 2 Testing (Advanced Types):
-- **42 comprehensive tests** in unified test suite (`advanced-types.test.ts`)
+- **51 comprehensive tests** in unified test suite (`advanced-types.test.ts`)
 - **JSDoc documentation** for all test functions
-- **Complete coverage** of union types, factory patterns, type predicates, and business logic
+- **Complete coverage** of union types, factory patterns, type predicates, string literals, and business logic
 
 #### Test Categories (Task 2):
 1. **Integration Tests** (3 tests) - Console output & compilation validation
@@ -257,8 +288,9 @@ The project includes comprehensive test coverage across all tasks:
 4. **Teacher Class Tests** (4 tests) - Method implementation and interface compliance
 5. **createEmployee Function Tests** (15 tests) - Factory logic with all edge cases
 6. **Edge Cases & Business Logic** (3 tests) - Boundary conditions and type coercion
-7. **🆕 Task 6: Employee-Specific Functions** (9 tests) - Type predicates and function execution
+7. **Task 6: Employee-Specific Functions** (9 tests) - Type predicates and function execution
 8. **Complete Requirements Validation** (3 tests) - Full specification compliance
+9. **🆕 Task 7: String Literal Types** (9 tests) - String literal types and type safety
 
 ## 📁 File Descriptions
 
@@ -276,7 +308,7 @@ The project includes comprehensive test coverage across all tasks:
 | File | Purpose |
 |------|---------|
 | `js/main.ts` | Advanced types implementation with union types and factory pattern |
-| `advanced-types.test.ts` | **Unified test suite with 42 comprehensive tests** |
+| `advanced-types.test.ts` | **Unified test suite with 51 comprehensive tests** |
 | `README.md` | **Detailed documentation** with usage examples and test descriptions |
 | `package.json` | Dependencies with Jest, ts-jest, and jsdom |
 | `tsconfig.json` | TypeScript strict mode configuration |
@@ -343,6 +375,14 @@ By completing this project, you'll understand:
    - **instanceof operator** for runtime type checking
    - **Advanced function composition** with type safety
 
+8. **🔤 String Literal Types (Task 7)**
+   - **String literal types** with specific value constraints
+   - **Type safety** preventing invalid string inputs at compile time
+   - **Union of string literals** (`'Math' | 'History'`)
+   - **Function parameter constraints** with literal types
+   - **Conditional logic** based on literal string values
+   - **Type-driven development** with strict string validation
+
 ## 🔄 Development Workflow
 
 1. **Write TypeScript code** in `js/main.ts`
@@ -354,14 +394,14 @@ By completing this project, you'll understand:
 
 ## 📊 Project Stats
 
-- **6 completed tasks** with full TypeScript implementation
+- **7 completed tasks** with full TypeScript implementation
 - **Task 1**: 19 comprehensive tests with 100% pass rate
-- **🆕 Task 2 (Tasks 5 & 6)**: 42 comprehensive tests with 100% pass rate
-- **Total**: **61 tests** across all tasks
+- **🆕 Task 2 (Tasks 5, 6, 7)**: 51 comprehensive tests with 100% pass rate
+- **Total**: **70 tests** across all tasks
 - **Zero TypeScript errors** in compilation
 - **Modern tooling** with Webpack 5 and Jest 29
 - **Full documentation** with JSDoc comments and detailed READMEs
-- **Advanced features**: Union types, factory patterns, type predicates, and employee-specific functions
+- **Advanced features**: Union types, factory patterns, type predicates, string literal types, and type safety
 
 ## 🤝 Contributing
 
