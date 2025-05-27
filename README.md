@@ -32,15 +32,30 @@ holbertonschool-web_react/
     │   ├── package.json
     │   ├── tsconfig.json
     │   └── webpack.config.js
-    └── task_2/          # Advanced Types Part 1 (Union Types & Factory Pattern)
-        ├── js/main.ts
-        ├── advanced-types.test.ts    # 42 comprehensive tests
-        ├── jest.config.js
-        ├── jest.setup.js
-        ├── package.json
-        ├── tsconfig.json
-        ├── webpack.config.js
-        └── README.md
+    ├── task_2/          # Advanced Types Part 1 (Union Types & Factory Pattern)
+    │   ├── js/main.ts
+    │   ├── advanced-types.test.ts    # 51 comprehensive tests
+    │   ├── jest.config.js
+    │   ├── jest.setup.js
+    │   ├── package.json
+    │   ├── tsconfig.json
+    │   ├── webpack.config.js
+    │   └── README.md
+    └── task_3/          # Ambient Namespaces (External Library Integration)
+        ├── js/
+        │   ├── main.ts              # Main application with CRUD operations
+        │   ├── interface.ts         # Type definitions (RowID, RowElement)
+        │   ├── crud.js             # External CRUD library (JavaScript)
+        │   ├── crud.d.ts           # Ambient declarations for CRUD functions
+        │   ├── crud.test.ts        # CRUD function tests
+        │   ├── main.test.ts        # Main application flow tests
+        │   └── interface.test.ts   # Type and interface tests
+        ├── jest.config.js          # Jest configuration
+        ├── jest.setup.js           # Jest setup file
+        ├── babel.config.js         # Babel configuration
+        ├── package.json            # Project dependencies
+        ├── tsconfig.json           # TypeScript configuration
+        └── webpack.config.js       # Webpack configuration
 ```
 
 ## 🎯 Tasks Completed
@@ -99,7 +114,7 @@ holbertonschool-web_react/
   - **Advanced TypeScript patterns**: type guards and conditional execution
   - **Business logic**: Directors call `workDirectorTasks()`, Teachers call `workTeacherTasks()`
 
-### 🔤 Task 7: String Literal Types (NEW - COMPLETED)
+### 🔤 Task 7: String Literal Types (COMPLETED)
 - **File**: `TypeScript/task_2/js/main.ts`
 - **Features**:
   - **Subjects string literal type** allowing only `'Math'` or `'History'`
@@ -108,6 +123,17 @@ holbertonschool-web_react/
   - **Conditional logic** based on literal values
   - **Expected outputs**: `teachClass('Math')` → `'Teaching Math'`, `teachClass('History')` → `'Teaching History'`
   - **51 comprehensive tests** in unified test suite with complete documentation
+
+### 🌐 Task 8: Ambient Namespaces (NEW - COMPLETED)
+- **File**: `TypeScript/task_3/js/main.ts`
+- **Features**:
+  - **Ambient declarations** for external JavaScript libraries (`crud.d.ts`)
+  - **Triple slash directive** for including ambient dependencies
+  - **Type definitions** for external CRUD functions (`insertRow`, `updateRow`, `deleteRow`)
+  - **Interface integration** with external library functions
+  - **Type safety** for third-party JavaScript code
+  - **IntelliSense support** for external functions through ambient declarations
+  - **22 comprehensive tests** covering CRUD operations, types, and integration workflows
 
 ## 🛠️ Technologies Used
 
@@ -140,6 +166,9 @@ holbertonschool-web_react/
    
    # For Task 2 (Advanced Types with Union Types & Factory Pattern)
    cd TypeScript/task_2
+   
+   # For Task 3 (Ambient Namespaces)
+   cd TypeScript/task_3
    ```
 
 3. **Install dependencies:**
@@ -261,6 +290,49 @@ console.log(teachClass('History'));  // "Teaching History"
 // teachClass('Science'); // ❌ TypeScript Error: Argument of type '"Science"' is not assignable
 ```
 
+### 🌐 Ambient Namespaces Usage (Task 8)
+```typescript
+// Triple slash directive for ambient declarations
+/// <reference path="./crud.d.ts" />
+
+import { RowID, RowElement } from './interface';
+import * as CRUD from './crud.js';
+
+// Type definitions
+export type RowID = number;
+export interface RowElement {
+  firstName: string;
+  lastName: string;
+  age?: number;
+}
+
+// Ambient declarations in crud.d.ts
+declare function insertRow(row: RowElement): RowID;
+declare function deleteRow(rowId: RowID): void;
+declare function updateRow(rowId: RowID, row: RowElement): RowID;
+
+// Usage with full type safety
+const row: RowElement = {
+  firstName: 'Guillaume',
+  lastName: 'Salva',
+};
+
+const newRowID: RowID = CRUD.insertRow(row);
+// Output: Insert row { firstName: 'Guillaume', lastName: 'Salva' }
+
+const updatedRow: RowElement = {
+  firstName: 'Guillaume',
+  lastName: 'Salva',
+  age: 23,
+};
+
+CRUD.updateRow(newRowID, updatedRow);
+// Output: Update row [ID] { firstName: 'Guillaume', lastName: 'Salva', age: 23 }
+
+CRUD.deleteRow(newRowID);
+// Output: Delete row id [ID]
+```
+
 ## 🧪 Testing
 
 The project includes comprehensive test coverage across all tasks:
@@ -281,6 +353,11 @@ The project includes comprehensive test coverage across all tasks:
 - **JSDoc documentation** for all test functions
 - **Complete coverage** of union types, factory patterns, type predicates, string literals, and business logic
 
+### 🌐 Task 3 Testing (Ambient Namespaces):
+- **22 comprehensive tests** across 3 test files with full TypeScript integration
+- **Mock-based testing** to avoid ES6 module compatibility issues
+- **Complete coverage** of ambient declarations, type safety, and CRUD operations
+
 #### Test Categories (Task 2):
 1. **Integration Tests** (3 tests) - Console output & compilation validation
 2. **Interface Validation** (2 tests) - DirectorInterface & TeacherInterface structure
@@ -291,6 +368,13 @@ The project includes comprehensive test coverage across all tasks:
 7. **Task 6: Employee-Specific Functions** (9 tests) - Type predicates and function execution
 8. **Complete Requirements Validation** (3 tests) - Full specification compliance
 9. **🆕 Task 7: String Literal Types** (9 tests) - String literal types and type safety
+
+#### Test Categories (Task 3):
+1. **CRUD Function Tests** (8 tests) - Mock-based testing of insertRow, updateRow, deleteRow
+2. **Type and Interface Tests** (6 tests) - RowID type and RowElement interface validation
+3. **Integration Tests** (1 test) - Complete CRUD workflow testing
+4. **Main Application Flow Tests** (4 tests) - Main.ts execution simulation and validation
+5. **Interface Type Tests** (3 tests) - Advanced type compatibility and operations
 
 ## 📁 File Descriptions
 
@@ -315,6 +399,23 @@ The project includes comprehensive test coverage across all tasks:
 | `webpack.config.js` | Development server and bundling configuration |
 | `jest.config.js` | Jest configuration with ts-jest preset |
 | `jest.setup.js` | Jest setup for DOM testing environment |
+
+### 🌐 Task 3 Files (TypeScript/task_3/):
+| File | Purpose |
+|------|---------|
+| `js/main.ts` | Main application with CRUD operations and ambient namespace usage |
+| `js/interface.ts` | Type definitions (RowID type, RowElement interface) |
+| `js/crud.js` | External CRUD library (JavaScript) with insertRow, updateRow, deleteRow |
+| `js/crud.d.ts` | Ambient declarations providing TypeScript types for CRUD functions |
+| `js/crud.test.ts` | CRUD function tests with mocked implementations (8 tests) |
+| `js/main.test.ts` | Main application flow tests (4 tests) |
+| `js/interface.test.ts` | Type and interface validation tests (10 tests) |
+| `package.json` | Dependencies with Jest, ts-jest, Babel, and TypeScript |
+| `tsconfig.json` | TypeScript configuration for ambient namespaces |
+| `webpack.config.js` | Webpack configuration for ES6 modules |
+| `jest.config.js` | Jest configuration with TypeScript support |
+| `jest.setup.js` | Jest setup for console mocking |
+| `babel.config.js` | Babel configuration for ES6 module transformation |
 
 ## 🔧 Configuration
 
@@ -383,6 +484,15 @@ By completing this project, you'll understand:
    - **Conditional logic** based on literal string values
    - **Type-driven development** with strict string validation
 
+9. **🌐 Ambient Namespaces (Task 8)**
+   - **Ambient declarations** for external JavaScript libraries
+   - **Triple slash directives** for dependency inclusion
+   - **Type safety** for third-party code without TypeScript
+   - **Interface integration** with external libraries
+   - **IntelliSense support** for external functions
+   - **Declaration files** (.d.ts) for type definitions
+   - **External library integration** with full type checking
+
 ## 🔄 Development Workflow
 
 1. **Write TypeScript code** in `js/main.ts`
@@ -394,10 +504,11 @@ By completing this project, you'll understand:
 
 ## 📊 Project Stats
 
-- **7 completed tasks** with full TypeScript implementation
+- **8 completed tasks** with full TypeScript implementation
 - **Task 1**: 19 comprehensive tests with 100% pass rate
-- **🆕 Task 2 (Tasks 5, 6, 7)**: 51 comprehensive tests with 100% pass rate
-- **Total**: **70 tests** across all tasks
+- **Task 2 (Tasks 5, 6, 7)**: 51 comprehensive tests with 100% pass rate
+- **🆕 Task 3 (Task 8)**: 22 comprehensive tests with 100% pass rate
+- **Total**: 92 tests across all tasks with complete TypeScript coverage
 - **Zero TypeScript errors** in compilation
 - **Modern tooling** with Webpack 5 and Jest 29
 - **Full documentation** with JSDoc comments and detailed READMEs
