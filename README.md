@@ -79,15 +79,20 @@ holbertonschool-web_react/
     │   ├── package.json            # Project dependencies
     │   ├── tsconfig.json           # TypeScript configuration
     │   └── webpack.config.js       # Webpack configuration
-    └── task_4/          # Task 9: Namespace & Declaration Merging
-        ├── js/subjects/
-        │   ├── Teacher.ts          # Teacher interface in Subjects namespace
-        │   ├── Subject.ts          # Subject base class with teacher attribute
-        │   ├── Cpp.ts              # Cpp class with experienceTeachingC merging
-        │   ├── React.ts            # React class with experienceTeachingReact merging
-        │   └── Java.ts             # Java class with experienceTeachingJava merging
+    ├── task_4/          # Task 9: Namespace & Declaration Merging
+    │   ├── js/subjects/
+    │   │   ├── Teacher.ts          # Teacher interface in Subjects namespace
+    │   │   ├── Subject.ts          # Subject base class with teacher attribute
+    │   │   ├── Cpp.ts              # Cpp class with experienceTeachingC merging
+    │   │   ├── React.ts            # React class with experienceTeachingReact merging
+    │   │   └── Java.ts             # Java class with experienceTeachingJava merging
+    │   ├── package.json            # Project dependencies
+    │   └── tsconfig.json           # TypeScript configuration
+    └── task_5/          # Task 10: Brand convention & Nominal typing
+        ├── js/main.ts              # MajorCredits and MinorCredits interfaces with brand properties
         ├── package.json            # Project dependencies
-        └── tsconfig.json           # TypeScript configuration
+        ├── tsconfig.json           # TypeScript configuration
+        └── webpack.config.js       # Webpack configuration
 ```
 
 ## 📋 Tasks
@@ -217,6 +222,22 @@ holbertonschool-web_react/
   - **getAvailableTeacher methods** with conditional logic based on experience
   - **Type safety** across namespace boundaries
 
+---
+
+## 📁 **Task_5 Directory** (Task 10)
+
+### 🏷️ Task 10: Brand convention & Nominal typing
+- **Directory**: `TypeScript/task_5/`
+- **Files**: `js/main.ts`, `package.json`, `webpack.config.js`, `tsconfig.json`
+- **Features**:
+  - **MajorCredits interface** with `credits` number and `brand: "major"` property
+  - **MinorCredits interface** with `credits` number and `brand: "minor"` property
+  - **Brand properties** for unique identification and nominal typing
+  - **sumMajorCredits function** taking two MajorCredits and returning MajorCredits
+  - **sumMinorCredits function** taking two MinorCredits and returning MinorCredits
+  - **Type safety** preventing mixing of major and minor credits
+  - **Nominal typing** ensuring compile-time distinction between similar types
+
 ## 🛠️ Technologies Used
 
 - **TypeScript 4.9.5** - Main programming language
@@ -254,6 +275,9 @@ holbertonschool-web_react/
    
    # For Task 9 (Namespace & Declaration Merging)
    cd TypeScript/task_4
+   
+   # For Task 10 (Brand convention & Nominal typing)
+   cd TypeScript/task_5
    ```
 
 3. **Install dependencies:**
@@ -318,7 +342,7 @@ console.log(student.displayName());     // Output: "Alice"
 console.log(student.workOnHomework());  // Output: "Currently working"
 ```
 
-### 🆕 Advanced Types Usage (Task 5)
+### 🚀 Advanced Types Usage (Task 5)
 ```typescript
 // Factory function with union types
 const employee1 = createEmployee(200);   // Returns Teacher
@@ -346,51 +370,6 @@ function executeWork(employee: Director | Teacher): string {
   }
   return employee.workTeacherTasks();
 }
-```
-
-### 🏗️ Namespace & Declaration Merging Usage (Task 9)
-```typescript
-// Namespace usage with declaration merging
-namespace Subjects {
-  // Teacher interface gets merged across files
-  const teacher: Teacher = {
-    firstName: "John",
-    lastName: "Doe",
-    experienceTeachingC: 5,        // Added by Cpp.ts
-    experienceTeachingReact: 3,    // Added by React.ts
-    experienceTeachingJava: 2      // Added by Java.ts
-  };
-
-  // Subject classes with inheritance
-  const cppSubject = new Cpp();
-  const reactSubject = new React();
-  const javaSubject = new Java();
-
-  // Setting teachers and getting availability
-  cppSubject.setTeacher(teacher);
-  console.log(cppSubject.getRequirements());     // "Here is the list of requirements for Cpp"
-  console.log(cppSubject.getAvailableTeacher()); // "Available Teacher: John"
-
-  reactSubject.setTeacher(teacher);
-  console.log(reactSubject.getAvailableTeacher()); // "Available Teacher: John"
-
-  // Teacher without experience
-  const newTeacher: Teacher = {
-    firstName: "Jane",
-    lastName: "Smith"
-  };
-  
-  javaSubject.setTeacher(newTeacher);
-  console.log(javaSubject.getAvailableTeacher()); // "No available teacher"
-    return employee.workDirectorTasks();
-  } else {
-    return employee.workTeacherTasks();
-  }
-}
-
-// Usage examples with expected outputs
-console.log(executeWork(createEmployee(200)));  // "Getting to work"
-console.log(executeWork(createEmployee(1000))); // "Getting to director tasks"
 ```
 
 ### 🔤 String Literal Types Usage (Task 7)
@@ -458,48 +437,122 @@ CRUD.deleteRow(newRowID);
 // Output: Delete row id [ID]
 ```
 
-## 🧪 Testing
+### 🏗️ Namespace & Declaration Merging Usage (Task 9)
+```typescript
+// Namespace usage with declaration merging
+namespace Subjects {
+  // Teacher interface gets merged across files
+  const teacher: Teacher = {
+    firstName: "John",
+    lastName: "Doe",
+    experienceTeachingC: 5,        // Added by Cpp.ts
+    experienceTeachingReact: 3,    // Added by React.ts
+    experienceTeachingJava: 2      // Added by Java.ts
+  };
 
-The project includes comprehensive test coverage across all tasks:
+  // Subject classes with inheritance
+  const cppSubject = new Cpp();
+  const reactSubject = new React();
+  const javaSubject = new Java();
 
-### Task 1 Testing:
-- **19 total tests** for interfaces, functions, and classes
-- **Jest configuration** with TypeScript support
-- **Type validation** and edge case testing
+  // Setting teachers and getting availability
+  cppSubject.setTeacher(teacher);
+  console.log(cppSubject.getRequirements());     // "Here is the list of requirements for Cpp"
+  console.log(cppSubject.getAvailableTeacher()); // "Available Teacher: John"
 
-#### Test Categories (Task 1):
-1. **Teacher Interface Tests** (5 tests) - Property validation and types
-2. **Directors Interface Tests** (3 tests) - Inheritance and extension
-3. **printTeacher Function Tests** (5 tests) - String formatting and edge cases
-4. **StudentClass Tests** (6 tests) - Constructor, methods, and interface compliance
+  reactSubject.setTeacher(teacher);
+  console.log(reactSubject.getAvailableTeacher()); // "Available Teacher: John"
 
-### 🆕 Task 2 Testing (Advanced Types):
-- **51 comprehensive tests** in unified test suite (`advanced-types.test.ts`)
-- **JSDoc documentation** for all test functions
-- **Complete coverage** of union types, factory patterns, type predicates, string literals, and business logic
+  // Teacher without experience
+  const newTeacher: Teacher = {
+    firstName: "Jane",
+    lastName: "Smith"
+  };
+  
+  javaSubject.setTeacher(newTeacher);
+  console.log(javaSubject.getAvailableTeacher()); // "No available teacher"
+}
+```
 
-### 🌐 Task 3 Testing (Ambient Namespaces):
-- **22 comprehensive tests** across 3 test files with full TypeScript integration
-- **Mock-based testing** to avoid ES6 module compatibility issues
-- **Complete coverage** of ambient declarations, type safety, and CRUD operations
+### 🏷️ Brand Convention & Nominal Typing Usage (Task 10)
+```typescript
+// Brand convention for nominal typing
+interface MajorCredits {
+  credits: number;
+  brand: "major";  // Brand property for unique identification
+}
 
-#### Test Categories (Task 2):
-1. **Integration Tests** (3 tests) - Console output & compilation validation
-2. **Interface Validation** (2 tests) - DirectorInterface & TeacherInterface structure
-3. **Director Class Tests** (4 tests) - Method implementation and interface compliance
-4. **Teacher Class Tests** (4 tests) - Method implementation and interface compliance
-5. **createEmployee Function Tests** (15 tests) - Factory logic with all edge cases
-6. **Edge Cases & Business Logic** (3 tests) - Boundary conditions and type coercion
-7. **Task 6: Employee-Specific Functions** (9 tests) - Type predicates and function execution
-8. **Complete Requirements Validation** (3 tests) - Full specification compliance
-9. **🆕 Task 7: String Literal Types** (9 tests) - String literal types and type safety
+interface MinorCredits {
+  credits: number;
+  brand: "minor";  // Brand property for unique identification
+}
 
-#### Test Categories (Task 3):
-1. **CRUD Function Tests** (8 tests) - Mock-based testing of insertRow, updateRow, deleteRow
-2. **Type and Interface Tests** (6 tests) - RowID type and RowElement interface validation
-3. **Integration Tests** (1 test) - Complete CRUD workflow testing
-4. **Main Application Flow Tests** (4 tests) - Main.ts execution simulation and validation
-5. **Interface Type Tests** (3 tests) - Advanced type compatibility and operations
+// Functions with type safety
+function sumMajorCredits(subject1: MajorCredits, subject2: MajorCredits): MajorCredits {
+  return {
+    credits: subject1.credits + subject2.credits,
+    brand: "major"
+  };
+}
+
+function sumMinorCredits(subject1: MinorCredits, subject2: MinorCredits): MinorCredits {
+  return {
+    credits: subject1.credits + subject2.credits,
+    brand: "minor"
+  };
+}
+
+// Usage examples
+const majorSubject1: MajorCredits = { credits: 3, brand: "major" };
+const majorSubject2: MajorCredits = { credits: 4, brand: "major" };
+
+const minorSubject1: MinorCredits = { credits: 1, brand: "minor" };
+const minorSubject2: MinorCredits = { credits: 2, brand: "minor" };
+
+const totalMajor = sumMajorCredits(majorSubject1, majorSubject2);
+// Result: { credits: 7, brand: "major" }
+
+const totalMinor = sumMinorCredits(minorSubject1, minorSubject2);
+// Result: { credits: 3, brand: "minor" }
+
+// TypeScript prevents mixing types:
+// sumMajorCredits(majorSubject1, minorSubject1); // ❌ Compile error!
+
+// Usage examples with expected outputs
+console.log(executeWork(createEmployee(200)));  // "Getting to work"
+console.log(executeWork(createEmployee(1000))); // "Getting to director tasks"
+```
+
+## 🧪 Testing Strategy
+
+### 📊 Test Coverage by Task
+
+- **📁 Task_1**: 5 tests for string formatting logic (printTeacher function)
+- **📁 Task_2**: 51 comprehensive tests for advanced types and business logic
+- **📁 Task_3**: 22 tests for ambient namespaces and external library integration
+
+### Test Categories by Directory
+
+#### 📁 Task_1 Testing:
+- **✍️ printTeacher Function** (5 tests) - String formatting logic validation
+
+#### 📁 Task_2 Testing:
+1. **🔧 Integration Tests** (3 tests) - Console output & compilation validation
+2. **📋 Interface Validation** (2 tests) - DirectorInterface & TeacherInterface structure
+3. **👨‍💼 Director Class Tests** (4 tests) - Method implementation and interface compliance
+4. **👨‍🏫 Teacher Class Tests** (4 tests) - Method implementation and interface compliance
+5. **🏭 createEmployee Function Tests** (15 tests) - Factory logic with all edge cases
+6. **⚠️ Edge Cases & Business Logic** (3 tests) - Boundary conditions and type coercion
+7. **🎯 Employee-Specific Functions** (9 tests) - Type predicates and function execution
+8. **✅ Complete Requirements Validation** (3 tests) - Full specification compliance
+9. **🔤 String Literal Types** (9 tests) - String literal types and type safety
+
+#### 📁 Task_3 Testing:
+1. **🌐 CRUD Function Tests** (8 tests) - Mock-based testing of insertRow, updateRow, deleteRow
+2. **📋 Type and Interface Tests** (6 tests) - RowID type and RowElement interface validation
+3. **🔧 Integration Tests** (1 test) - Complete CRUD workflow testing
+4. **🚀 Main Application Flow Tests** (4 tests) - Main.ts execution simulation and validation
+5. **📊 Interface Type Tests** (3 tests) - Advanced type compatibility and operations
 
 ## 📁 File Descriptions
 
@@ -507,7 +560,7 @@ The project includes comprehensive test coverage across all tasks:
 | File | Purpose |
 |------|---------|
 | `js/main.ts` | **Tasks 1-4**: Teacher interface, Directors extension, printTeacher function, StudentClass |
-| `teacher.test.ts` | Comprehensive test suite with 19 tests covering all Tasks 1-4 |
+| `teacher.test.ts` | **Test suite with 5 tests** - printTeacher function logic validation |
 | `package.json` | Dependencies and scripts configuration |
 | `tsconfig.json` | TypeScript compiler configuration |
 | `webpack.config.js` | Webpack bundler configuration |
@@ -553,6 +606,14 @@ The project includes comprehensive test coverage across all tasks:
 | `package.json` | Dependencies with TypeScript and development tools |
 | `tsconfig.json` | TypeScript configuration with strict mode and namespace support |
 
+### 📁 Task_5 Files (TypeScript/task_5/) - Task 10:
+| File | Purpose |
+|------|---------|
+| `js/main.ts` | **Task 10**: MajorCredits and MinorCredits interfaces with brand properties + sum functions |
+| `package.json` | Dependencies with TypeScript and development tools |
+| `tsconfig.json` | TypeScript configuration with strict mode |
+| `webpack.config.js` | Webpack configuration for development and bundling |
+
 ## 🔧 Configuration
 
 ### TypeScript Configuration
@@ -571,32 +632,32 @@ The project includes comprehensive test coverage across all tasks:
 
 By completing this project, you'll understand:
 
-1. **TypeScript Interfaces**
+1. **📋 TypeScript Interfaces**
    - Property definitions and constraints
    - Optional vs required properties
    - Readonly properties
    - Index signatures for dynamic properties
 
-2. **Interface Inheritance**
+2. **🔗 Interface Inheritance**
    - Extending interfaces with new properties
    - Maintaining type safety across inheritance
 
-3. **Function Interfaces**
+3. **⚡ Function Interfaces**
    - Defining function signatures
    - Type-safe function implementation
 
-4. **Class-Interface Integration**
+4. **🎯 Class-Interface Integration**
    - Implementing interfaces in classes
    - Constructor interfaces
    - Method type definitions
 
-5. **Modern Development Workflow**
+5. **🛠️ Modern Development Workflow**
    - TypeScript compilation
    - Automated testing
    - Development server setup
    - Code quality tools
 
-6. **🆕 Advanced TypeScript Features (Task 5)**
+6. **🚀 Advanced TypeScript Features (Task 5)**
    - **Union types** for function parameters (`number | string`)
    - **Union return types** (`Director | Teacher`)
    - **Factory pattern** with conditional logic
@@ -639,10 +700,20 @@ By completing this project, you'll understand:
     - **Conditional logic** based on merged interface properties
     - **Compilation-time validation** without runtime testing
 
+11. **🏷️ Brand Convention & Nominal Typing (Task 10)**
+    - **Brand properties** for unique type identification
+    - **Nominal typing** creating distinct types from similar structures
+    - **Type safety** preventing accidental mixing of similar types
+    - **Compile-time validation** of branded types
+    - **Interface branding** with literal string types
+    - **Function type constraints** with branded parameters
+    - **Type discrimination** at compile time
+    - **Advanced type system** patterns for robust code
+
 ## 🔄 Development Workflow
 
 1. **Write TypeScript code** in `js/main.ts`
-2. **Write tests** in `teacher.test.ts`
+2. **Write tests** in test files
 3. **Run tests** with `npm test`
 4. **Check compilation** with `npm run build`
 5. **Test in browser** with `npm run start-dev`
@@ -650,13 +721,12 @@ By completing this project, you'll understand:
 
 ## 📊 Project Stats
 
-- **✅ 10 tasks completed** (Task 0-9) with full TypeScript implementation
+- **✅ 11 tasks completed** (Task 0-10) with full TypeScript implementation
 - **🧪 Testing coverage**:
-  - **Task_1 (Tasks 1-4)**: 19 comprehensive tests with 100% pass rate
-  - **Task_2 (Tasks 5-7)**: 51 comprehensive tests with 100% pass rate  
-  - **Task_3 (Task 8)**: 22 comprehensive tests with 100% pass rate
-  - **Task_4 (Task 9)**: No tests required - validation through TypeScript compilation
-- **📈 Total**: 92 tests across tested tasks with complete TypeScript coverage
+  - **Task_1**: 5 tests for string formatting logic
+  - **Task_2**: 51 comprehensive tests for advanced types and business logic  
+  - **Task_3**: 22 tests for external library integration
+- **📈 Total**: 78 tests focusing on runtime behavior validation
 - **🚫 Zero TypeScript errors** in compilation across all tasks
 - **🛠️ Modern tooling** with Webpack 5 and Jest 29
 - **📚 Full documentation** with JSDoc comments and detailed READMEs
