@@ -13,6 +13,29 @@ This project is part of the Holberton School curriculum for learning React and T
 - **TypeScript compilation** and type checking
 - **Modern development tooling** (Webpack, Jest, ESLint)
 
+## 🎯 Learning Objectives
+
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+- ✅ **Basic types in TypeScript**
+- ✅ **Interfaces, Classes, and functions**
+- ✅ **How to work with the DOM and TypeScript**
+- ✅ **Generic types**
+- ✅ **How to use namespaces**
+- ✅ **How to merge declarations**
+- ✅ **How to use an ambient Namespace to import an external library**
+- ✅ **Basic nominal typing with TypeScript**
+
+## ⚙️ Requirements
+
+- **Allowed editors**: vi, vim, emacs, Visual Studio Code
+- **All files should end with a new line**
+- **All files will be transpiled on Ubuntu 18.04**
+- **TS scripts will be checked with jest (version 24.9.*)**
+- **A README.md file, at the root of the folder of the project, is mandatory**
+- **Code should use the .ts extension when possible**
+- **The TypeScript compiler should not show any warning or error when compiling your code**
+
 ## 🏗️ Project Structure
 
 ```
@@ -25,14 +48,14 @@ holbertonschool-web_react/
     │   ├── tsconfig.json
     │   ├── webpack.config.js
     │   └── *.test.ts
-    ├── task_1/          # Advanced TypeScript features (Interfaces & Classes)
+    ├── task_1/          # Tasks 1-4: Interfaces & Classes
     │   ├── js/main.ts
     │   ├── teacher.test.ts
     │   ├── jest.config.js
     │   ├── package.json
     │   ├── tsconfig.json
     │   └── webpack.config.js
-    ├── task_2/          # Advanced Types Part 1 (Union Types & Factory Pattern)
+    ├── task_2/          # Tasks 5-7: Advanced Types (Union Types & Factory Pattern)
     │   ├── js/main.ts
     │   ├── advanced-types.test.ts    # 51 comprehensive tests
     │   ├── jest.config.js
@@ -41,99 +64,158 @@ holbertonschool-web_react/
     │   ├── tsconfig.json
     │   ├── webpack.config.js
     │   └── README.md
-    └── task_3/          # Ambient Namespaces (External Library Integration)
-        ├── js/
-        │   ├── main.ts              # Main application with CRUD operations
-        │   ├── interface.ts         # Type definitions (RowID, RowElement)
-        │   ├── crud.js             # External CRUD library (JavaScript)
-        │   ├── crud.d.ts           # Ambient declarations for CRUD functions
-        │   ├── crud.test.ts        # CRUD function tests
-        │   ├── main.test.ts        # Main application flow tests
-        │   └── interface.test.ts   # Type and interface tests
-        ├── jest.config.js          # Jest configuration
-        ├── jest.setup.js           # Jest setup file
-        ├── babel.config.js         # Babel configuration
+    ├── task_3/          # Task 8: Ambient Namespaces (External Library Integration)
+    │   ├── js/
+    │   │   ├── main.ts              # Main application with CRUD operations
+    │   │   ├── interface.ts         # Type definitions (RowID, RowElement)
+    │   │   ├── crud.js             # External CRUD library (JavaScript)
+    │   │   ├── crud.d.ts           # Ambient declarations for CRUD functions
+    │   │   ├── crud.test.ts        # CRUD function tests
+    │   │   ├── main.test.ts        # Main application flow tests
+    │   │   └── interface.test.ts   # Type and interface tests
+    │   ├── jest.config.js          # Jest configuration
+    │   ├── jest.setup.js           # Jest setup file
+    │   ├── babel.config.js         # Babel configuration
+    │   ├── package.json            # Project dependencies
+    │   ├── tsconfig.json           # TypeScript configuration
+    │   └── webpack.config.js       # Webpack configuration
+    └── task_4/          # Task 9: Namespace & Declaration Merging
+        ├── js/subjects/
+        │   ├── Teacher.ts          # Teacher interface in Subjects namespace
+        │   ├── Subject.ts          # Subject base class with teacher attribute
+        │   ├── Cpp.ts              # Cpp class with experienceTeachingC merging
+        │   ├── React.ts            # React class with experienceTeachingReact merging
+        │   └── Java.ts             # Java class with experienceTeachingJava merging
         ├── package.json            # Project dependencies
-        ├── tsconfig.json           # TypeScript configuration
-        └── webpack.config.js       # Webpack configuration
+        └── tsconfig.json           # TypeScript configuration
 ```
 
-## 🎯 Tasks Completed
+## 📋 Tasks
 
-### Task 0: Basic Student Interface
-- **File**: `TypeScript/task_0/js/main.ts`
-- **Features**: 
-  - Student interface with basic properties
-  - DOM manipulation and table rendering
-  - TypeScript compilation setup
+## 📁 **Task_0 Directory** (Task 0)
 
-### Task 1: Teacher Interface
-- **File**: `TypeScript/task_1/js/main.ts`
+### 📝 Task 0: Creating an interface for a student
+- **Directory**: `TypeScript/task_0/`
+- **Files**: `js/main.ts`, `package.json`, `.eslintrc.js`, `tsconfig.json`, `webpack.config.js`
 - **Features**:
-  - `Teacher` interface with readonly properties (`firstName`, `lastName`)
-  - Optional property (`yearsOfExperience`)
-  - Dynamic properties using index signature `[key: string]: any`
-  - Example: Adding `contract` property dynamically
+  - **Student interface** with `firstName`, `lastName`, `age`, `location` properties
+  - **Array of students** (`student1`, `student2` stored in `studentsList`)
+  - **DOM manipulation** with Vanilla JavaScript to render table
+  - **Table rendering** displaying firstName and location for each student
+  - **TypeScript compilation** with Webpack returning "No type errors found"
 
-### Task 2: Directors Interface Extension
-- **Features**:
-  - `Directors` interface extending `Teacher`
-  - Additional required property: `numberOfReports: number`
-  - Interface inheritance demonstration
+---
 
-### Task 3: Function Interface
-- **Features**:
-  - `printTeacherFunction` interface for function typing
-  - `printTeacher` function implementation
-  - String manipulation: `"John", "Doe"` → `"J. Doe"`
+## 📁 **Task_1 Directory** (Tasks 1-4)
 
-### Task 4: Class Implementation
+### 👨‍🏫 Task 1: Let's build a Teacher interface
+- **Directory**: `TypeScript/task_1/`
+- **Files**: `js/main.ts`, `package.json`, `tsconfig.json`, `webpack.config.js`
 - **Features**:
-  - `StudentClass` with constructor interface
-  - `StudentClassInterface` for method definitions
-  - Methods: `workOnHomework()` and `displayName()`
-  - Full class-interface integration
+  - **Teacher interface** with readonly `firstName` and `lastName`
+  - **Required properties**: `fullTimeEmployee` (boolean), `location` (string)
+  - **Optional property**: `yearsOfExperience` (number)
+  - **Dynamic properties** using index signature `[key: string]: any`
+  - **Example**: Adding `contract` property dynamically
 
-### 🚀 Task 5: Advanced Types Part 1 (COMPLETED)
-- **File**: `TypeScript/task_2/js/main.ts`
+### 📚 Task 2: Extending the Teacher class
+- **Directory**: `TypeScript/task_1/`
+- **File**: `js/main.ts`
 - **Features**:
-  - **DirectorInterface** with method signatures (`workFromHome`, `getCoffeeBreak`, `workDirectorTasks`)
-  - **TeacherInterface** with method signatures (`workFromHome`, `getCoffeeBreak`, `workTeacherTasks`)
-  - **Director class** implementing DirectorInterface with specific return values
-  - **Teacher class** implementing TeacherInterface with specific return values
+  - **Directors interface** extending `Teacher`
+  - **Additional required property**: `numberOfReports` (number)
+  - **Interface inheritance** demonstration
+  - **Type safety** with extended interfaces
+
+### ✍️ Task 3: Printing teachers
+- **Directory**: `TypeScript/task_1/`
+- **File**: `js/main.ts`
+- **Features**:
+  - **printTeacher function** accepting `firstName` and `lastName`
+  - **String formatting**: `"John", "Doe"` → `"J. Doe"`
+  - **printTeacherFunction interface** for function typing
+  - **Type-safe function implementation**
+
+### 🎓 Task 4: Writing a class
+- **Directory**: `TypeScript/task_1/`
+- **File**: `js/main.ts`
+- **Features**:
+  - **StudentClass** with constructor accepting `firstName` and `lastName`
+  - **workOnHomework method** returning `"Currently working"`
+  - **displayName method** returning student's firstName
+  - **Constructor interface** and **class interface** descriptions
+  - **Full class-interface integration**
+
+---
+
+## 📁 **Task_2 Directory** (Tasks 5-7)
+
+### 🚀 Task 5: Advanced types Part 1
+- **Directory**: `TypeScript/task_2/`
+- **Files**: `js/main.ts`, `webpack.config.js`, `tsconfig.json`, `package.json`
+- **Features**:
+  - **DirectorInterface** with `workFromHome()`, `getCoffeeBreak()`, `workDirectorTasks()`
+  - **TeacherInterface** with `workFromHome()`, `getCoffeeBreak()`, `workTeacherTasks()`
+  - **Director class** implementing DirectorInterface
+  - **Teacher class** implementing TeacherInterface
   - **createEmployee factory function** with union types (`number | string`)
-  - **Advanced business logic**: salary < 500 (number) → Teacher, otherwise → Director
-  - **Union return types**: `Director | Teacher`
+  - **Business logic**: salary < 500 → Teacher, otherwise → Director
 
-### 🆕 Task 6: Employee-Specific Functions (COMPLETED)
-- **File**: `TypeScript/task_2/js/main.ts`
+### 🎯 Task 6: Creating functions specific to employees
+- **Directory**: `TypeScript/task_2/`
+- **File**: `js/main.ts`
 - **Features**:
-  - **isDirector type predicate function** with `employee is Director` syntax
-  - **executeWork function** that executes specific work based on employee type
-  - **Type narrowing** using type predicates for safe type casting
-  - **Advanced TypeScript patterns**: type guards and conditional execution
-  - **Business logic**: Directors call `workDirectorTasks()`, Teachers call `workTeacherTasks()`
+  - **isDirector function** as type predicate (`employee is Director`)
+  - **executeWork function** calling appropriate work methods
+  - **Type narrowing** using type predicates
+  - **Conditional execution** based on employee type
+  - **Expected outputs**: `executeWork(createEmployee(200))` → `"Getting to work"`
 
-### 🔤 Task 7: String Literal Types (COMPLETED)
-- **File**: `TypeScript/task_2/js/main.ts`
+### 🔤 Task 7: String literal types
+- **Directory**: `TypeScript/task_2/`
+- **File**: `js/main.ts`
 - **Features**:
   - **Subjects string literal type** allowing only `'Math'` or `'History'`
-  - **teachClass function** with string literal parameter constraints
-  - **Type safety** with literal types preventing invalid inputs
-  - **Conditional logic** based on literal values
-  - **Expected outputs**: `teachClass('Math')` → `'Teaching Math'`, `teachClass('History')` → `'Teaching History'`
-  - **51 comprehensive tests** in unified test suite with complete documentation
+  - **teachClass function** with string literal parameter
+  - **Conditional returns**: `'Math'` → `'Teaching Math'`, `'History'` → `'Teaching History'`
+  - **Type safety** preventing invalid string inputs
+  - **Compile-time validation** of literal types
 
-### 🌐 Task 8: Ambient Namespaces (NEW - COMPLETED)
-- **File**: `TypeScript/task_3/js/main.ts`
+---
+
+## 📁 **Task_3 Directory** (Task 8)
+
+### 🌐 Task 8: Ambient Namespaces
+- **Directory**: `TypeScript/task_3/`
+- **Files**: `js/main.ts`, `js/interface.ts`, `js/crud.d.ts`
 - **Features**:
-  - **Ambient declarations** for external JavaScript libraries (`crud.d.ts`)
-  - **Triple slash directive** for including ambient dependencies
-  - **Type definitions** for external CRUD functions (`insertRow`, `updateRow`, `deleteRow`)
-  - **Interface integration** with external library functions
-  - **Type safety** for third-party JavaScript code
-  - **IntelliSense support** for external functions through ambient declarations
-  - **22 comprehensive tests** covering CRUD operations, types, and integration workflows
+  - **RowID type** set to number
+  - **RowElement interface** with `firstName`, `lastName`, `age?`
+  - **External library integration** with `crud.js`
+  - **Ambient declarations** in `crud.d.ts`
+  - **Triple slash directive** including dependencies
+  - **CRUD operations** with type safety (`insertRow`, `updateRow`, `deleteRow`)
+  - **IntelliSense support** for external functions
+
+---
+
+## 📁 **Task_4 Directory** (Task 9)
+
+### 🏗️ Task 9: Namespace & Declaration merging
+- **Directory**: `TypeScript/task_4/`
+- **Files**: `package.json`, `tsconfig.json`, `js/subjects/Teacher.ts`, `js/subjects/Subject.ts`, `js/subjects/Cpp.ts`, `js/subjects/Java.ts`, `js/subjects/React.ts`
+- **Features**:
+  - **Subjects namespace** organizing all classes and interfaces
+  - **Teacher interface** with `firstName` and `lastName` strings
+  - **Subject class** with `teacher` attribute and `setTeacher` method
+  - **Declaration merging** extending Teacher interface:
+    - `Cpp.ts` adds `experienceTeachingC?: number`
+    - `React.ts` adds `experienceTeachingReact?: number`
+    - `Java.ts` adds `experienceTeachingJava?: number`
+  - **Class inheritance** (Cpp, React, Java extending Subject)
+  - **getRequirements methods** returning subject-specific requirements
+  - **getAvailableTeacher methods** with conditional logic based on experience
+  - **Type safety** across namespace boundaries
 
 ## 🛠️ Technologies Used
 
@@ -161,14 +243,17 @@ holbertonschool-web_react/
 
 2. **Navigate to a TypeScript project:**
    ```bash
-   # For Task 1 (Interfaces & Classes)
+   # For Tasks 1-4 (Interfaces & Classes)
    cd TypeScript/task_1
    
-   # For Task 2 (Advanced Types with Union Types & Factory Pattern)
+   # For Tasks 5-7 (Advanced Types with Union Types & Factory Pattern)
    cd TypeScript/task_2
    
-   # For Task 3 (Ambient Namespaces)
+   # For Task 8 (Ambient Namespaces)
    cd TypeScript/task_3
+   
+   # For Task 9 (Namespace & Declaration Merging)
+   cd TypeScript/task_4
    ```
 
 3. **Install dependencies:**
@@ -257,6 +342,46 @@ function isDirector(employee: Director | Teacher): employee is Director {
 // Function that executes work based on employee type
 function executeWork(employee: Director | Teacher): string {
   if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  }
+  return employee.workTeacherTasks();
+}
+```
+
+### 🏗️ Namespace & Declaration Merging Usage (Task 9)
+```typescript
+// Namespace usage with declaration merging
+namespace Subjects {
+  // Teacher interface gets merged across files
+  const teacher: Teacher = {
+    firstName: "John",
+    lastName: "Doe",
+    experienceTeachingC: 5,        // Added by Cpp.ts
+    experienceTeachingReact: 3,    // Added by React.ts
+    experienceTeachingJava: 2      // Added by Java.ts
+  };
+
+  // Subject classes with inheritance
+  const cppSubject = new Cpp();
+  const reactSubject = new React();
+  const javaSubject = new Java();
+
+  // Setting teachers and getting availability
+  cppSubject.setTeacher(teacher);
+  console.log(cppSubject.getRequirements());     // "Here is the list of requirements for Cpp"
+  console.log(cppSubject.getAvailableTeacher()); // "Available Teacher: John"
+
+  reactSubject.setTeacher(teacher);
+  console.log(reactSubject.getAvailableTeacher()); // "Available Teacher: John"
+
+  // Teacher without experience
+  const newTeacher: Teacher = {
+    firstName: "Jane",
+    lastName: "Smith"
+  };
+  
+  javaSubject.setTeacher(newTeacher);
+  console.log(javaSubject.getAvailableTeacher()); // "No available teacher"
     return employee.workDirectorTasks();
   } else {
     return employee.workTeacherTasks();
@@ -378,21 +503,21 @@ The project includes comprehensive test coverage across all tasks:
 
 ## 📁 File Descriptions
 
-### Task 1 Files (TypeScript/task_1/):
+### 📁 Task_1 Files (TypeScript/task_1/) - Tasks 1-4:
 | File | Purpose |
 |------|---------|
-| `js/main.ts` | Main TypeScript implementation with interfaces and classes |
-| `teacher.test.ts` | Comprehensive test suite with full documentation |
+| `js/main.ts` | **Tasks 1-4**: Teacher interface, Directors extension, printTeacher function, StudentClass |
+| `teacher.test.ts` | Comprehensive test suite with 19 tests covering all Tasks 1-4 |
 | `package.json` | Dependencies and scripts configuration |
 | `tsconfig.json` | TypeScript compiler configuration |
 | `webpack.config.js` | Webpack bundler configuration |
 | `jest.config.js` | Jest testing framework configuration |
 
-### 🆕 Task 2 Files (TypeScript/task_2/):
+### 📁 Task_2 Files (TypeScript/task_2/) - Tasks 5-7:
 | File | Purpose |
 |------|---------|
-| `js/main.ts` | Advanced types implementation with union types and factory pattern |
-| `advanced-types.test.ts` | **Unified test suite with 51 comprehensive tests** |
+| `js/main.ts` | **Tasks 5-7**: Advanced types, employee functions, string literal types |
+| `advanced-types.test.ts` | **Unified test suite with 51 comprehensive tests** for Tasks 5-7 |
 | `README.md` | **Detailed documentation** with usage examples and test descriptions |
 | `package.json` | Dependencies with Jest, ts-jest, and jsdom |
 | `tsconfig.json` | TypeScript strict mode configuration |
@@ -400,10 +525,10 @@ The project includes comprehensive test coverage across all tasks:
 | `jest.config.js` | Jest configuration with ts-jest preset |
 | `jest.setup.js` | Jest setup for DOM testing environment |
 
-### 🌐 Task 3 Files (TypeScript/task_3/):
+### 📁 Task_3 Files (TypeScript/task_3/) - Task 8:
 | File | Purpose |
 |------|---------|
-| `js/main.ts` | Main application with CRUD operations and ambient namespace usage |
+| `js/main.ts` | **Task 8**: Main application with CRUD operations and ambient namespace usage |
 | `js/interface.ts` | Type definitions (RowID type, RowElement interface) |
 | `js/crud.js` | External CRUD library (JavaScript) with insertRow, updateRow, deleteRow |
 | `js/crud.d.ts` | Ambient declarations providing TypeScript types for CRUD functions |
@@ -416,6 +541,17 @@ The project includes comprehensive test coverage across all tasks:
 | `jest.config.js` | Jest configuration with TypeScript support |
 | `jest.setup.js` | Jest setup for console mocking |
 | `babel.config.js` | Babel configuration for ES6 module transformation |
+
+### 📁 Task_4 Files (TypeScript/task_4/) - Task 9:
+| File | Purpose |
+|------|---------|
+| `js/subjects/Teacher.ts` | **Task 9**: Teacher interface with firstName and lastName in Subjects namespace |
+| `js/subjects/Subject.ts` | Subject base class with teacher attribute and setTeacher method |
+| `js/subjects/Cpp.ts` | Cpp class extending Subject + declaration merging for experienceTeachingC |
+| `js/subjects/React.ts` | React class extending Subject + declaration merging for experienceTeachingReact |
+| `js/subjects/Java.ts` | Java class extending Subject + declaration merging for experienceTeachingJava |
+| `package.json` | Dependencies with TypeScript and development tools |
+| `tsconfig.json` | TypeScript configuration with strict mode and namespace support |
 
 ## 🔧 Configuration
 
@@ -493,6 +629,16 @@ By completing this project, you'll understand:
    - **Declaration files** (.d.ts) for type definitions
    - **External library integration** with full type checking
 
+10. **🏗️ Namespace & Declaration Merging (Task 9)**
+    - **Namespace organization** for logical code grouping
+    - **Declaration merging** to extend interfaces across multiple files
+    - **Interface augmentation** with optional properties
+    - **Class inheritance** within namespaces
+    - **Type safety** across namespace boundaries
+    - **Modular architecture** with namespace-based organization
+    - **Conditional logic** based on merged interface properties
+    - **Compilation-time validation** without runtime testing
+
 ## 🔄 Development Workflow
 
 1. **Write TypeScript code** in `js/main.ts`
@@ -504,15 +650,17 @@ By completing this project, you'll understand:
 
 ## 📊 Project Stats
 
-- **8 completed tasks** with full TypeScript implementation
-- **Task 1**: 19 comprehensive tests with 100% pass rate
-- **Task 2 (Tasks 5, 6, 7)**: 51 comprehensive tests with 100% pass rate
-- **🆕 Task 3 (Task 8)**: 22 comprehensive tests with 100% pass rate
-- **Total**: 92 tests across all tasks with complete TypeScript coverage
-- **Zero TypeScript errors** in compilation
-- **Modern tooling** with Webpack 5 and Jest 29
-- **Full documentation** with JSDoc comments and detailed READMEs
-- **Advanced features**: Union types, factory patterns, type predicates, string literal types, and type safety
+- **✅ 10 tasks completed** (Task 0-9) with full TypeScript implementation
+- **🧪 Testing coverage**:
+  - **Task_1 (Tasks 1-4)**: 19 comprehensive tests with 100% pass rate
+  - **Task_2 (Tasks 5-7)**: 51 comprehensive tests with 100% pass rate  
+  - **Task_3 (Task 8)**: 22 comprehensive tests with 100% pass rate
+  - **Task_4 (Task 9)**: No tests required - validation through TypeScript compilation
+- **📈 Total**: 92 tests across tested tasks with complete TypeScript coverage
+- **🚫 Zero TypeScript errors** in compilation across all tasks
+- **🛠️ Modern tooling** with Webpack 5 and Jest 29
+- **📚 Full documentation** with JSDoc comments and detailed READMEs
+- **🚀 Advanced features**: Union types, factory patterns, type predicates, string literal types, namespaces, declaration merging, and comprehensive type safety
 
 ## 🤝 Contributing
 
